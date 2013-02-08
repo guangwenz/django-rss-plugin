@@ -24,6 +24,6 @@ INSTALLED_APPS = (
 Then you are good to go!
 
 Online Resources
-* Code repository _.
+* `Code repository`_.
 
-.. _ Code repository : https://github.com/zgwmike/django-rss-plugin
+.. _Code repository: https://github.com/zgwmike/django-rss-plugin
