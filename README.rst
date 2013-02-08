@@ -14,16 +14,21 @@ Features
 Usage
 =====
 
-Add rssplugin to your INSTALLED_APPS in Django settings.py file.
-like following:
-INSTALLED_APPS = (
-    ...
-    'rssplugin',
-    ...
-    )
+Installation::
+
+  $ pip install django-rss-plugin
+
+Add rssplugin to your INSTALLED_APPS in Django settings.py file, Like following::
+
+  INSTALLED_APPS=(
+  	'rssplugin',
+  )
+
 Then you are good to go!
 
 Online Resources
+----------------
+
 * `Code repository`_.
 
 .. _Code repository: https://github.com/zgwmike/django-rss-plugin
