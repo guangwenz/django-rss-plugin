@@ -21,5 +21,7 @@ setup(
         "Environment :: Web Environment",
         "License :: OSI Approved :: BSD License"
     ],
+    requires=['feedparser', 'django-cms'],
+    download_url='https://github.com/zgwmike/django-rss-plugin/archive/master.zip',
     long_description=read("README.rst")
 )
