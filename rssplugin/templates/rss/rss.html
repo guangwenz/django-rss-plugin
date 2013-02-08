@@ -1,0 +1,21 @@
+{% load cms_tags i18n %}
+<h3>
+    {% if instance.title %}
+        {{ instance.title }}
+    {% else %}
+        {{ feed.feed.title }}
+    {% endif %}
+</h3>
+<ul>
+    {% for e in feed.entries %}
+        {% if forloop.counter <= instance.count %}
+            <li>
+	    <a {% if instance.open_in_new_window %} target="_blank" {% endif %} href="{{ e.link }}">{{ e.title }}</a>
+	    {% trans %}by{% endtrans %}
+	    <a href="{{ e.author_detail.link }}">{{ e.author }}</a>
+	    at
+	    {{ e.published_parsed|date }}
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>
