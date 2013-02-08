@@ -7,7 +7,7 @@ def read(fname):
 
 setup(
     name="django-rss-plugin",
-    version="0.0.1",
+    version="0.0.2",
     author="Guangwen Zhou",
     author_email="zgwmike@hotmail.com",
     description=("A Django CMS plugin to show django-rss-plugin."),
@@ -21,7 +21,7 @@ setup(
         "Environment :: Web Environment",
         "License :: OSI Approved :: BSD License"
     ],
-    requires=['feedparser', 'django-cms'],
+    install_requires=['feedparser', 'django-cms'],
     download_url='https://github.com/zgwmike/django-rss-plugin/archive/master.zip',
     long_description=read("README.rst")
 )
