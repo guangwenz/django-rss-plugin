@@ -2,12 +2,15 @@ __author__ = 'Zhou Guangwen'
 import os
 from setuptools import setup
 
+PKG_NAME='rssplugin'
+VERSION = __import__(PKG_NAME).__version__
+
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
     name="django-rss-plugin",
-    version="0.0.3",
+    version=VERSION,
     author="Guangwen Zhou",
     author_email="zgwmike@hotmail.com",
     description="A Django CMS plugin to show a list of feeds.",
