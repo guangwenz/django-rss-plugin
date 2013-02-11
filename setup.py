@@ -2,11 +2,13 @@ __author__ = 'Zhou Guangwen'
 import os
 from setuptools import setup
 
-PKG_NAME='rssplugin'
+PKG_NAME = 'rssplugin'
 VERSION = __import__(PKG_NAME).__version__
+
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
+
 
 setup(
     name="django-rss-plugin",
@@ -19,7 +21,7 @@ setup(
     url="http://github.com/zgwmike/django-rss-plugin",
     packages=["rssplugin"],
     classifiers=[
-	'Development Status :: 5 - Production/Stable',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Plugins',
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -33,8 +35,8 @@ setup(
         'Topic :: Utilities',
     ],
     install_requires=[
-	    'feedparser', 
-	    'Django >= 1.4',
-	    'django-cms >= 2.3'],
-    long_description=read("README.rst")
+        'feedparser',
+        'Django >= 1.4',
+        'django-cms >= 2.3'],
+    long_description=read("README.rst") + read("CHANGES.rst")
 )

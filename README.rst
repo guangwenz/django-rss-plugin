@@ -24,7 +24,14 @@ Add rssplugin to your INSTALLED_APPS in Django settings.py file, Like following:
   	'rssplugin',
   )
 
-Then you are good to go!
+**template filter**
+
+#. parsed_to_date::
+
+    {% load rss_tags %}
+    {{ entry.published_parsed|parsed_to_date|timesince }}
+
+see rss.html for usage examples.
 
 Online Resources
 ----------------

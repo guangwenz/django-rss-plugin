@@ -7,6 +7,7 @@ from django.core.cache import cache
 from django.utils.translation import ugettext as _
 import feedparser
 
+
 class PlanetPlugin(CMSPluginBase):
     model = RSSPlugin
     name = _("RSS Plugin")
@@ -14,12 +15,13 @@ class PlanetPlugin(CMSPluginBase):
     admin_preview = False
 
     def render(self, context, instance, placeholder):
-        feed  = cache.get(instance.rss_url)
+        feed = cache.get(instance.rss_url)
         if not feed:
             feed = feedparser.parse(instance.rss_url)
-            cache.set(instance.rss_url,feed,instance.cache_time)
+            cache.set(instance.rss_url, feed, instance.cache_time)
         context.update({"instance": instance,
                         "feed": feed})
         return context
+
 
 plugin_pool.register_plugin(PlanetPlugin)

@@ -1,21 +1,25 @@
 {% load cms_tags i18n rss_tags %}
 <h3>
-	{% if instance.title %}
-	{{ instance.title }}
-	{% else %}
-	{{ feed.feed.title }}
-	{% endif %}
+    {% if instance.title %}
+    {{ instance.title }}
+    {% else %}
+    {{ feed.feed.title }}
+    {% endif %}
 </h3>
+{% if feed.entries %}
 <ul>
-	{% for e in feed.entries %}
-	{% if forloop.counter <= instance.count %}
-	<li><p>
-	<a {% if instance.open_in_new_window %} target="_blank" {% endif %} href="{{ e.link }}">{{ e.title }}</a>
-	{% trans 'by' %}
-	<a href="{{ e.author_detail.link }}">{{ e.author }}</a>
-	{{ e.published_parsed|parsed_to_date|timesince }}
-	{% trans 'ago' %}
-	</p></li>
-	{% endif %}
-	{% endfor %}
+    {% for e in feed.entries %}
+    {% if forloop.counter <= instance.count %}
+    <li><p>
+        <a {% if instance.open_in_new_window %} target="_blank" {% endif %} href="{{ e.link }}">{{ e.title }}</a>
+        {% trans 'by' %}
+        <a href="{{ e.author_detail.link }}">{{ e.author }}</a>
+        {{ e.published_parsed|parsed_to_date|timesince }}
+        {% trans 'ago' %}
+    </p></li>
+    {% endif %}
+    {% endfor %}
 </ul>
+{% else %}
+{% trans 'No entries found' %}
+{% endif %}
