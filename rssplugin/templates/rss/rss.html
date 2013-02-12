@@ -12,8 +12,19 @@
     {% if forloop.counter <= instance.count %}
     <li><p>
         <a {% if instance.open_in_new_window %} target="_blank" {% endif %} href="{{ e.link }}">{{ e.title }}</a>
+        {% if e.author_detail %}
         {% trans 'by' %}
-        <a href="{{ e.author_detail.link }}">{{ e.author }}</a>
+        {% if e.author_detail.link %}
+        <a href="{{ e.author_detail.link }}">{{ e.author_detail.name }}</a>
+        {% elif e.author_detail.email %}
+        <a href="mailto:{{ e.author_detail.email }}">{{ e.author_detail.name }}</a>
+        {% else %}
+        {{ e.author_detail.name }}
+        {% endif %},
+        {% elif e.author %}
+        {% trans 'by' %}
+        {{ e.author }},
+        {% endif %}
         {{ e.published_parsed|parsed_to_date|timesince }}
         {% trans 'ago' %}
     </p></li>

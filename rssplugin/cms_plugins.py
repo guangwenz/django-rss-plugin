@@ -17,11 +17,18 @@ class PlanetPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         feed = cache.get(instance.rss_url)
         if not feed:
-            feed = feedparser.parse(instance.rss_url)
+            url = self._build_feed_url(context,instance.rss_url)
+            feed = feedparser.parse(url)
             cache.set(instance.rss_url, feed, instance.cache_time)
         context.update({"instance": instance,
                         "feed": feed})
         return context
+
+    def _build_feed_url(self, context, rss_url):
+        request = context.get('request')
+        if not ''.startswith('http') and request:
+            rss_url = request.build_absolute_uri(rss_url)
+        return rss_url
 
 
 plugin_pool.register_plugin(PlanetPlugin)
