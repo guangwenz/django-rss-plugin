@@ -1,6 +1,11 @@
 
 Change History
 --------------
+
+- 2/13/2013, Version 0.0.7
+
+    Fix a template bug.
+
 - 2/12/2013, Version 0.0.6
 
     New feature:
