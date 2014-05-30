@@ -1,5 +1,7 @@
 __author__ = 'Zhou Guangwen'
 
+import logging
+
 from rssplugin.models import RSSPlugin
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -17,8 +19,11 @@ class PlanetPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         feed = cache.get(instance.rss_url)
         if not feed:
-            url = self._build_feed_url(context,instance.rss_url)
+            url = self._build_feed_url(context, instance.rss_url)
             feed = feedparser.parse(url)
+            if 'bozo_exception' in feed:
+                logging.warning('Error parsing feed %s.  Error: %s' % (instance.rss_url, feed['bozo_exception']))
+                del feed['bozo_exception']  # have to delete to avoid pickling error in cache
             cache.set(instance.rss_url, feed, instance.cache_time)
         context.update({"instance": instance,
                         "feed": feed})
