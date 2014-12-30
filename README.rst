@@ -10,6 +10,7 @@ Features
 * You can choose to open the feed in current window or new window.
 * Show any rss feed you specified, it can be your external rss url, or your internal rss relative url like '/myblog/rss'.
 * The feed list would be cached for specified time long.
+* You can choose the template of your RSS feed or use the default
 
 Usage
 =====
@@ -42,6 +43,10 @@ If no south, just run::
 see rss.html for usage examples.
 
 **Notice**, both external link like 'http：//example.com/rss' and internal link like '/blog/rss' are supported.
+
+
+**Using custom template**
+Use `CMS_RSS_PLUGIN_TEMPLATE = "path_to_your_template.html"` in settings.py to set a custom template.
 
 Online Resources
 ----------------
