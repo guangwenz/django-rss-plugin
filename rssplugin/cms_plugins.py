@@ -9,11 +9,17 @@ from django.core.cache import cache
 from django.utils.translation import ugettext as _
 import feedparser
 
+try:
+    from django.conf import settings
+    rss_render_template = settings.CMS_RSS_PLUGIN_TEMPLATE
+except:
+    rss_render_template = "rss/rss.html"
+
 
 class PlanetPlugin(CMSPluginBase):
     model = RSSPlugin
     name = _("RSS Plugin")
-    render_template = "rss/rss.html"
+    render_template = rss_render_template
     admin_preview = False
 
     def render(self, context, instance, placeholder):
