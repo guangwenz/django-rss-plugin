@@ -1,6 +1,9 @@
 
 Change History
 --------------
+- 01/01/2015, Version 0.0.8
+
+	Added customized template support, thanks to Felix-neko contribution.
 
 - 2/13/2013, Version 0.0.7
 
