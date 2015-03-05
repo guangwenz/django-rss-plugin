@@ -46,10 +46,12 @@ see rss.html for usage examples.
 
 
 **Using custom template**
+
 Use `CMS_RSS_PLUGIN_TEMPLATE = "path_to_your_template.html"` in settings.py to set a custom template, default is rss/rss.html.
 
 
 **Feed timeout**
+
 Use `CMS_RSS_PLUGIN_FEEDPARSER_TIMEOUT = seconds` in settings.py to set a custom socket timeout, default is 60
 
 Online Resources
