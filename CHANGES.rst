@@ -1,6 +1,10 @@
 
 Change History
 --------------
+- 03/04/2015, Version 0.0.9
+
+   Added socket timeout settings when fetching feed.
+   
 - 01/01/2015, Version 0.0.8
 
 	Added customized template support, thanks to Felix-neko contribution.
