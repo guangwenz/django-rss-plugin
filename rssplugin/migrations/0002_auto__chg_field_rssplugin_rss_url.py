@@ -4,15 +4,19 @@ from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 
+from rssplugin.utils import rename_tables_new_to_old
+
 
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        rename_tables_new_to_old(db)
 
         # Changing field 'RSSPlugin.rss_url'
         db.alter_column('cmsplugin_rssplugin', 'rss_url', self.gf('django.db.models.fields.CharField')(max_length=512))
 
     def backwards(self, orm):
+        rename_tables_new_to_old(db)
 
         # Changing field 'RSSPlugin.rss_url'
         db.alter_column('cmsplugin_rssplugin', 'rss_url', self.gf('django.db.models.fields.URLField')(max_length=200))
