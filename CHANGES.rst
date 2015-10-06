@@ -1,6 +1,10 @@
 
 Change History
 --------------
+- 10/05/2015, Version 0.1.0
+
+  Merged fix from Chive to fix cms plugin table names
+  
 - 03/04/2015, Version 0.0.9
 
    Added socket timeout settings when fetching feed.
