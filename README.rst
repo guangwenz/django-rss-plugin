@@ -25,11 +25,25 @@ Add rssplugin to your INSTALLED_APPS in Django settings.py file, Like following:
   	'rssplugin',
   )
 
+*Django >= 1.7*::
+
+Run django migrate to install plugin database::
+
+  $ python manage.py migrate rssplugin
+
+*Django and South*::
+
+In your settings.py file, set the south migration module::
+
+  SOUTH_MIGRATION_MODULES = {
+    'rssplugin': 'rssplugin.south_migrations',
+  }
+
 Run south migrate to install plugin database::
 
   $ python manage.py migrate rssplugin
 
-If no south, just run::
+*Django < 1.7 without South*::
 
   $ python manage.py syncdb
 
