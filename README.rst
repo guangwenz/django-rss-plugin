@@ -59,9 +59,20 @@ see rss.html for usage examples.
 **Notice**, both external link like 'http：//example.com/rss' and internal link like '/blog/rss' are supported.
 
 
-**Using custom template**
+**Using custom templates**
 
 Use `CMS_RSS_PLUGIN_TEMPLATE = "path_to_your_template.html"` in settings.py to set a custom template, default is rss/rss.html.
+
+If CMS_RSS_PLUGIN_TEMPLATES is defined, rssplugin offers authors an optional
+choice of custom templates.
+
+Example::
+
+  CMS_RSS_PLUGIN_TEMPLATES = (
+      ('short.html', gettext('Short')),
+      ('long.html', gettext('Long')),
+      ('mailing_list.html', gettext('List Server')),
+  )
 
 
 **Feed timeout**

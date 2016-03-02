@@ -17,8 +17,12 @@ feedparser_timeout = getattr(settings, 'CMS_RSS_PLUGIN_FEEDPARSER_TIMEOUT', 60)
 class PlanetPlugin(CMSPluginBase):
     model = RSSPlugin
     name = _("RSS Plugin")
-    render_template = rss_render_template
     admin_preview = False
+    exclude = () if hasattr(settings,
+                            'CMS_RSS_PLUGIN_TEMPLATES') else ('template',)
+
+    def get_render_template(self, context, instance, placeholder):
+        return instance.template if instance.template else rss_render_template
 
     def render(self, context, instance, placeholder):
         feed = cache.get(instance.rss_url)
