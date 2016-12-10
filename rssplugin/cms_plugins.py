@@ -2,24 +2,36 @@ __author__ = 'Zhou Guangwen'
 
 import logging
 
-from rssplugin.models import RSSPlugin
-from cms.plugin_base import CMSPluginBase
-from cms.plugin_pool import plugin_pool
+from django import forms
+from django.conf import settings
 from django.core.cache import cache
 from django.utils.translation import ugettext as _
+from cms.plugin_base import CMSPluginBase
+from cms.plugin_pool import plugin_pool
 import feedparser
 
-from django.conf import settings
+from rssplugin.models import RSSPlugin
+
+
 rss_render_template = getattr(settings, 'CMS_RSS_PLUGIN_TEMPLATE', "rss/rss.html")
 feedparser_timeout = getattr(settings, 'CMS_RSS_PLUGIN_FEEDPARSER_TIMEOUT', 60)
+
+
+class RSSPluginForm(forms.ModelForm):
+    class Meta:
+        model = RSSPlugin
+        exclude = () if hasattr(settings, 'CMS_RSS_PLUGIN_TEMPLATES') else ('template',)
+    def __init__(self, *args, **kwargs):
+        super(RSSPluginForm, self).__init__(*args, **kwargs)
+        if hasattr(settings, 'CMS_RSS_PLUGIN_TEMPLATES'):
+            self.fields['template'] = forms.ChoiceField(widget=forms.Select, choices=getattr(settings, 'CMS_RSS_PLUGIN_TEMPLATES'))
 
 
 class PlanetPlugin(CMSPluginBase):
     model = RSSPlugin
     name = _("RSS Plugin")
     admin_preview = False
-    exclude = () if hasattr(settings,
-                            'CMS_RSS_PLUGIN_TEMPLATES') else ('template',)
+    form = RSSPluginForm
 
     def get_render_template(self, context, instance, placeholder):
         return instance.template if instance.template else rss_render_template
