@@ -2,13 +2,13 @@
 Django CMS RSS Plugin
 =====================
 
-Simple plugin to show a a rss feed in your django cms site.
+Simple plugin to show an RSS feed in your django cms site.
 
 Features
 ========
 * Show specified number of feeds in the page.
 * You can choose to open the feed in current window or new window.
-* Show any rss feed you specified, it can be your external rss url, or your internal rss relative url like '/myblog/rss'.
+* Show any RSS feed you specified, it can be your external RSS url, or your internal RSS relative url like '/myblog/rss'.
 * The feed list would be cached for specified time long.
 * You can choose the template of your RSS feed or use the default
 
@@ -25,11 +25,25 @@ Add rssplugin to your INSTALLED_APPS in Django settings.py file, Like following:
   	'rssplugin',
   )
 
+*Django >= 1.7*::
+
+Run django migrate to install plugin database::
+
+  $ python manage.py migrate rssplugin
+
+*Django and South*::
+
+In your settings.py file, set the south migration module::
+
+  SOUTH_MIGRATION_MODULES = {
+    'rssplugin': 'rssplugin.south_migrations',
+  }
+
 Run south migrate to install plugin database::
 
   $ python manage.py migrate rssplugin
 
-If no south, just run::
+*Django < 1.7 without South*::
 
   $ python manage.py syncdb
 
@@ -45,10 +59,22 @@ see rss.html for usage examples.
 **Notice**, both external link like 'http：//example.com/rss' and internal link like '/blog/rss' are supported.
 
 
-**Using custom template**
+**Using custom templates**
 
 Use `CMS_RSS_PLUGIN_TEMPLATE = "path_to_your_template.html"` in settings.py to set a custom template, default is rss/rss.html.
 
+If you specify CMS_RSS_PLUGIN_TEMPLATES instead, rssplugin offers authors an optional
+choice of custom templates.
+
+Example::
+
+  CMS_RSS_PLUGIN_TEMPLATES = (
+      ('short.html', gettext('Short')),
+      ('long.html', gettext('Long')),
+      ('mailing_list.html', gettext('List Server')),
+  )
+
+For a reference of the feed and entry attributes you can use in your templates, have a look at the feedparser dokumentation: https://pythonhosted.org/feedparser/
 
 **Feed timeout**
 

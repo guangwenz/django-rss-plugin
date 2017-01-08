@@ -11,7 +11,7 @@
     {% for e in feed.entries %}
     {% if forloop.counter <= instance.count %}
     <li><p>
-        <a {% if instance.open_in_new_window %} target="_blank" {% endif %} href="{{ e.link }}">{{ e.title }}</a>
+        <a {% if instance.open_in_new_window %}target="_blank" rel="noopener noreferrer"{% endif %} href="{{ e.link }}">{{ e.title }}</a>
         {% if e.author_detail %}
         {% trans 'by' %}
         {% if e.author_detail.link %}
